@@ -632,6 +632,58 @@ hello = Solution()
 param = hello.splitListToParts(head, 5)
 
 
+# Finding unique possible structural BST, given the number of nodes. Contructing each and every possible tree
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
+        if n==0:
+            return []
+        
+        def backtrack(start, end):
+            if start > end:
+                return [None]
+
+            all_trees= []
+            for i in range(start, end+1):
+                left_tree = backtrack(start, i-1)
+                right_tree = backtrack(i+1, end)
+
+                for l in left_tree:
+                    for r in right_tree:
+                        current_tree = TreeNode(i)
+                        current_tree.left = l
+                        current_tree.right = r
+                        all_trees.append(current_tree)
+            return all_trees
+            
+        return backtrack(1, n)
+    
+
+# Finding unique possible structural BST, given the number of nodes.
+
+class Solution:
+    def numTrees(self, n: int) -> int:
+
+        dp = [0] * (n+1)
+        dp[0] = dp[1] = 1
+
+        for i in range(2, n+1):
+            for j in range(1, i+1):
+                dp[i]+=dp[j-1] * dp[i-j]
+
+        return dp[n] 
+
+        
+        
+        
+
+
 
 
 
