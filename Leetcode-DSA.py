@@ -664,6 +664,9 @@ class Solution:
             
         return backtrack(1, n)
     
+Tree = Solution()
+Tree = Tree.generateTrees(3)
+    
 
 # Finding unique possible structural BST, given the number of nodes.
 
@@ -677,7 +680,21 @@ class Solution:
         return dp[n] 
     
 
-# Used DP to evaluate each possible way to construct nodes based on n
+
+
+# Checking if the two trees are structurally identical 
+
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q or p.val!=q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+    
+
+
+
     
 
         
