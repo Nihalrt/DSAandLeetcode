@@ -693,6 +693,19 @@ class Solution:
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
     
 
+root1 = TreeNode(1)
+root1.left = TreeNode(2)
+root1.right = TreeNode(3)
+
+root2 = TreeNode(1)
+root2.left = TreeNode(2)
+root2.right = TreeNode(3)
+
+answer = Solution()
+answer = answer.isSameTree(root1, root2)
+
+    
+
 
 
     
