@@ -691,6 +691,29 @@ class Solution:
         if not p or not q or p.val!=q.val:
             return False
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+
+        def inorder(node):
+            if node:
+                return inorder(node.left) + [node] + inorder(node.right) 
+            else:
+                return []
+
+        
+        nodes = inorder(root)
+        x, y = None, None
+
+        for i in range(len(nodes)-1):
+            if nodes[i].val > nodes[i+1].val:
+                y = nodes[i+1]
+                if not x:
+                    x = nodes[i]
+                else:
+                    break
+        x.val, y.val = y.val, x.val
     
 
 root1 = TreeNode(1)
