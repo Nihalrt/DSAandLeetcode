@@ -716,16 +716,30 @@ class Solution:
         x.val, y.val = y.val, x.val
     
 
-root1 = TreeNode(1)
-root1.left = TreeNode(2)
-root1.right = TreeNode(3)
+# root1 = TreeNode(1)
+# root1.left = TreeNode(3)
+# root1.right = TreeNode(2)
 
-root2 = TreeNode(1)
-root2.left = TreeNode(2)
-root2.right = TreeNode(3)
+# answer = Solution()
+# answer = answer.recoverTree(root1)
 
-answer = Solution()
-answer = answer.isSameTree(root1, root2)
+def mySqrt(x: int) -> int:
+        if x==0 or x==1:
+            return x
+        
+        left, right = 0, x
+        while left<=right:
+            mid = left + (right-left)//2
+            if mid*mid==x:
+                return mid
+            elif mid*mid<x:
+                left=mid+1
+            else:
+                right=mid-1
+        return right
+
+
+
 
     
 
