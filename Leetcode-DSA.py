@@ -619,17 +619,10 @@ class Solution:
         
         return parts
     
-head = ListNode(1)
-head.next = ListNode(2)
-head.next.next = ListNode(3)
-# head.next.next.next = ListNode(4)
-# head.next.next.next.next = ListNode(5)
-# head.next.next.next.next.next = ListNode(6);
-# head.next.next.next.next.next.next = ListNode(7);
 
-hello = Solution()
 
-param = hello.splitListToParts(head, 5)
+
+
 
 
 # Finding unique possible structural BST, given the number of nodes. Contructing each and every possible tree
@@ -751,8 +744,43 @@ class Solution:
         return max(left_depth, right_depth) + 1
 
 
+# Solved the question by l and dummy as pointers. 
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        if not head or left == right:
+            return head
+
+        dummy = ListNode(0)
+        dummy.next = head
+        l = dummy  
+        for _ in range(left - 1):
+            l = l.next
+
+        prev, curr = None, l.next
+        for _ in range(right - left + 1):  
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+
+        l.next.next = curr  
+        l.next = prev       
+
+        return dummy.next
+    
+
+head = ListNode(1)
+head.next = ListNode(2)
+head.next.next = ListNode(3)
+head.next.next.next = ListNode(4)
+head.next.next.next.next = ListNode(5)
+
+answer = Solution()
+kap = answer.reverseBetween(head, 2, 4)
 
 
+
+    
     
 
 
