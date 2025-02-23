@@ -772,7 +772,7 @@ class Solution:
 head = ListNode(1)
 head.next = ListNode(2)
 head.next.next = ListNode(3)
-head.next.next.next = ListNode(4)
+head.next.next.next = ListNode(4)  
 head.next.next.next.next = ListNode(5)
 
 answer = Solution()
@@ -787,6 +787,75 @@ def removeElement(self, nums: List[int], val: int) -> int:
                 nums[j] = nums[i]
                 j+=1
         return j
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# Converted a sorted ARRAY to a BST
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        if not nums:
+            return None
+
+        mid = len(nums) // 2
+        root = TreeNode(nums[mid])
+
+
+        root.left = self.sortedArrayToBST(nums[:mid])
+        root.right = self.sortedArrayToBST(nums[mid + 1:])
+
+        return root
+
+
+# Converted a sorted LIST to a BST
+def findMiddle(head):
+
+
+    if not head:
+        return None
+
+    prev = None
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        prev = slow
+        slow = slow.next
+        fast = fast.next.next
+
+    if prev:
+        prev.next = None
+
+    return slow
+class Solution:
+
+
+
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+
+        if not head:
+
+            return None
+
+        if not head.next:
+
+            return TreeNode(head.val)
+
+        mid = findMiddle(head)
+
+        root = TreeNode(mid.val)
+
+        root.left = self.sortedListToBST(head)
+        root.right = self.sortedListToBST(mid.next)
+
+        return root
+
 
     
     
