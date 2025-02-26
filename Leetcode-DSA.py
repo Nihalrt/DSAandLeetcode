@@ -885,6 +885,22 @@ class Solution:
 
             return max(left, right) + 1
         return check_height(root) != -1
+    
+
+# Solved mindepth easy using recursion
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        left = self.minDepth(root.left)
+        right = self.minDepth(root.right)
+
+        if not root.left or not root.right:
+            return 1 + max(left, right)
+        else:
+            return 1 + min(left, right)
+
 
     
     
