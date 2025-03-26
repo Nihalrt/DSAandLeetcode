@@ -1,4 +1,7 @@
 
+from collections import deque
+
+
 # Kadane's Algorithm
 def kadane(A):
     max_cur = max_glo = A[0]
@@ -900,6 +903,60 @@ class Solution:
             return 1 + max(left, right)
         else:
             return 1 + min(left, right)
+        
+     
+# solved PathSum problem using recursion   
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+        
+        if not root.left and not root.right and targetSum ==  root.val:
+            return True
+
+        targetSum -= root.val
+
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
+
+
+
+
+# Solved Binary Tree Level Order Traversal Using A Queue to extract the levels
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+
+        result = []
+        queue = deque([root])
+
+        while queue:
+            level_size = len(queue)
+            level = []
+            for _ in range(level_size):
+                node = queue.popleft()
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                    
+            result.append(level)
+
+        return result
+        
+        
 
 
     
