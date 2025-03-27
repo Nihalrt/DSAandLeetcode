@@ -993,6 +993,7 @@ root.right.right = TreeNode(7)
 # Run the test
 sol = Solution()
 print(sol.levelOrder(root))
+print(sol.zigzaglevelOrder(root))
         
         
 
