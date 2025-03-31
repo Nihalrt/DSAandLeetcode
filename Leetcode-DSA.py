@@ -996,6 +996,7 @@ root.right.right = TreeNode(7)
 sol = Solution()
 print(sol.levelOrder(root))
 
+
 # Solved the PathSum 2 using dfs recursion with backtracking 
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
@@ -1021,6 +1022,7 @@ class Solution:
     
         
         
+
         
         
 
