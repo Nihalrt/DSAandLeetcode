@@ -990,9 +990,37 @@ root.right = TreeNode(20)
 root.right.left = TreeNode(15)
 root.right.right = TreeNode(7)
 
+
+
 # Run the test
 sol = Solution()
 print(sol.levelOrder(root))
+
+# Solved the PathSum 2 using dfs recursion with backtracking 
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        result = []
+
+        def dfs(node, path, remaining):
+            if not node:
+                return
+            
+            path.append(node.val)
+            remaining -= node.val
+
+            if not node.left and not node.right and remaining == 0:
+                result.append(list(path))
+            
+            dfs(node.left, path, remaining)
+            dfs(node.right, path, remaining)
+
+            path.pop()
+        
+        dfs(root, [], targetSum)
+        return result
+    
+        
+        
         
         
 
