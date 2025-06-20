@@ -35,6 +35,27 @@ public class Main {
         
     }
 
+
+    // Solved Partition problem using a Greedy Approach 
+    public static int partitionArray(int[] nums, int k) {
+        Arrays.sort(nums);
+
+        int sub_count=0;
+        int min_val = -1;
+
+        for(int num: nums){
+
+            if(sub_count == 0 || (num - min_val) > k){
+                sub_count++;
+                min_val = num;
+            }
+
+
+        }
+        return sub_count;
+        
+    }
+
  
 
     
