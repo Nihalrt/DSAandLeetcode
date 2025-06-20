@@ -56,6 +56,24 @@ public class Main {
         
     }
 
+    // Solved Content Children (Cookies) using the greedy approach (greedy choice: least greedy child)
+    public static int ContentChildren(int[] g, int[] s){
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int st_idx = 0;
+        int c_idx = 0;
+        int give_c = 0;
+
+        while (st_idx < g.length && c_idx < s.length){
+            if (s[c_idx] >= g[st_idx]){
+                give_c++;
+                st_idx++;
+            }
+            c_idx++;
+        }
+        return give_c;
+    }
+
  
 
     
