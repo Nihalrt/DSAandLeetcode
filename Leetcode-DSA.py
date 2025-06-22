@@ -1037,6 +1037,15 @@ class Solution:
                 max_price = price - min_price
                 
         return max_price
+    
+    # Solved Grouping Strings K Daily Streak using List Comprehension
+    def divideString(self, s: str, k: int, fill: str) -> List[str]:
+        chunks = [
+    group if len(group) == k else group + fill*(k - len(group))
+    for group in (s[i:i+k] for i in range(0, len(s), k))
+]
+
+        return chunks
 
 
         
