@@ -1046,6 +1046,47 @@ class Solution:
 ]
 
         return chunks
+    
+
+    # Deleting a given Node from the linked list
+    def deleteNode(self, node):
+        x1 = node
+        x2 = node 
+
+        if x2.next!=None:
+            x2 = x2.next
+            x1.val = x2.val
+         
+            x1.next = x2.next
+            x2.next = None
+
+    # Returning list from the middle of the list, using pointer approach
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        size = 0
+        current = head
+        while current!=None:
+            current = current.next
+            size+=1
+
+        middle = size//2
+        current = head
+
+        for _ in range(middle):
+            current = current.next
+        
+        del middle
+        del size
+        return current
+    
+    # Checking isPalindrome using a list, reverse
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        check = []
+        current = head
+        while current!=None:
+            check.append(int(current.val))
+            current = current.next
+        reverse = check[::-1]
+        return check==reverse
 
 
         
