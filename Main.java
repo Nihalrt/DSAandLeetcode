@@ -8,6 +8,12 @@ public class Main {
         int GetMax = lengthOfLongestSubstring(test);
         System.out.println(GetMax);
 
+        // Test Case 1: Example from our walkthrough
+        int[] nums1 = {1, 1, 1, 2, 2, 3, 4, 4, 4, 4};
+        int k1 = 2;
+        int[] result1 = topKFrequent(nums1, k1);
+        System.out.println("Output: " + Arrays.toString(result1)); // Expected: [4, 1]
+
     }
 
     /*
@@ -134,15 +140,57 @@ public class Main {
         }
         return longest_streak;
     
-}
+    }
+
+    /* Solved Top K Frequent Elements problem using a HashMap and a MinHeap PriorityQueue
+     * Basically, we first create a hashmap that keeps track of the frequencies of each element in the array.
+     * Then, we use a minhea with a priority queue that stores entries of the hashmap with the condition of the element with the lowest frequency at the root
+     * Hence, in the end, when we remove the last root from the heap, we will have the k most frequent elements which is basically an array of entries.
+     * Then, we store they keys in another array and return it.
+     * Time Complexity: O(n log k) where n is the number of elements in the array and k is the number of top frequent elements
+     * Space Complexity: O(n) for the hashmap and the priority queue.
+     */
+    public static int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> HashFreq = new HashMap<>();
+
+        for(int i = 0; i < nums.length; i++)
+        {
+           
+            HashFreq.put(nums[i], HashFreq.getOrDefault(nums[i], 0)+1);
+ 
+        }
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<Map.Entry<Integer, Integer>>((a,b) -> a.getValue() - b.getValue());
+
+        for (Map.Entry<Integer, Integer> entry: HashFreq.entrySet())
+        {
+            minHeap.add(entry);
+            if (minHeap.size() > k)
+            {
+                minHeap.poll();
+            }
+            
+        }
+        List<Integer> result = new ArrayList<>();
+        while(!minHeap.isEmpty())
+        {
+            result.add(minHeap.poll().getKey());
+
+
+        }
+        Collections.reverse(result);
+        int[] finalArray = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            finalArray[i] = result.get(i);
+        }
+        return finalArray;
+        
+    }
 
  
 
     
-
-
-
+}
 
 
     
-}
+
