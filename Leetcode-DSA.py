@@ -1087,6 +1087,34 @@ class Solution:
             current = current.next
         reverse = check[::-1]
         return check==reverse
+    
+    """
+     - Leetcode: 4Sum II
+     - Solved using a Hashmap to keep track of hte frequencies of sums from lists nums1 and nums2, 
+       basically, the logic is that A + B + C + D = 0 can be rearranged to A + B = - (C + D), meaning that
+       if A + B = X, then C + D = -X. Technically, we can obtain A + B.
+    - We check if abs(C + D) exists in the hashmap, if it does, we increment the count of the acutal_count with the value of that current_sum present in the hashmap.
+    - Finally, we return the actual_count.
+    
+    """
+    def fourSumCount(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -> int:
+        hashfreq = {}
+        current_sum = 0
+        actual_count = 0
+
+        for n1 in nums1:
+            for n2 in nums2:
+                current_sum = n1+n2
+                hashfreq[current_sum] = hashfreq.get(current_sum, 0) + 1
+        
+        for n3 in nums3:
+            for n4 in nums4:
+                current_sum = n3+n4
+                target_sum = -current_sum
+                if target_sum in hashfreq:
+                    actual_count+=hashfreq[target_sum]
+        return actual_count
+
 
 
         
