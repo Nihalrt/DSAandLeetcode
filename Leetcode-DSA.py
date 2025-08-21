@@ -1114,6 +1114,23 @@ class Solution:
                 if target_sum in hashfreq:
                     actual_count+=hashfreq[target_sum]
         return actual_count
+    
+
+    """
+    - Leetcode: Find All Duplicates in an Array - Medium
+    - Solved using the fact that all the elements in the array are in the range from [1, n], which
+        are basically the indices of the array if you subtract num from nums. 
+    - logic: We iterate through the array and mark nums[abs(num)-1] as negative, if the element at nums[abs(num)-1] is already negative,
+             that means we have seen the number already, hence we append that number to the result.
+    
+    """
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        result  = []
+        for num in nums:
+            if nums[abs(num)-1] < 0:
+                result.append(abs(num))
+            nums[abs(num)-1] = -nums[abs(num)-1]
+        return result
 
 
 
